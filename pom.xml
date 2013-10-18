@@ -8,7 +8,7 @@
     <name>WarpSigns</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <main.class>code.huskehhh.com.com.huskehhh.warpsigns.WarpSigns</main.class>
+        <main.class>code.huskehhh.warpsigns.WarpSigns</main.class>
     </properties>
     <build>
         <finalName>${project.name}</finalName>
