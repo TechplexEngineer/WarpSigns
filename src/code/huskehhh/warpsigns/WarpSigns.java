@@ -3,7 +3,6 @@ package code.huskehhh.warpsigns;
 import code.huskehhh.warpsigns.listeners.WarpSignListener;
 import code.huskehhh.warpsigns.metrics.Metrics;
 import code.huskehhh.warpsigns.updater.Updater;
-
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,14 +20,16 @@ public class WarpSigns extends JavaPlugin {
         createConfig();
 
         if (config.getBoolean("auto-update")) {
-            updater = new Updater(this, "warpsigns", this.getFile(), Updater.UpdateType.DEFAULT, false);
+            updater = new Updater(this, 41513, this.getFile(), Updater.UpdateType.DEFAULT, false);
         }
 
-        try {
-            Metrics metrics = new Metrics(this);
-            metrics.start();
-        } catch (IOException e) {
-            // Failed to submit the stats :-(
+        if (config.getBoolean("metrics")) {
+            try {
+                Metrics metrics = new Metrics(this);
+                metrics.start();
+            } catch (IOException e) {
+                // Failed to submit the stats :-(
+            }
         }
 
     }
@@ -44,6 +45,7 @@ public class WarpSigns extends JavaPlugin {
 
             config.options().header("WarpSigns, made by Husky and Smithey!");
             config.set("auto-update", true);
+            config.set("metrics", true);
 
             try {
                 config.save("plugins/WarpSigns/config.yml");
