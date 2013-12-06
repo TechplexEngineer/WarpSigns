@@ -2,6 +2,7 @@ WarpSigns
 =========
 
 WarpSigns rewrite for @Smithey
+Made by Husky.
 
 Project Page
 =========
