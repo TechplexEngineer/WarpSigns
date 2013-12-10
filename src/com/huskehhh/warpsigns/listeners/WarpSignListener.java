@@ -47,7 +47,6 @@ public class WarpSignListener implements Listener {
         if (block.getType() == Material.SIGN || block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN) {
             if (block.getState() instanceof Sign) {
                 Sign sign = (Sign) block.getState();
-                String[] lines = sign.getLines();
                 
                 if (sign.getLine(0).equalsIgnoreCase("§1[Warp]")) {
                     if (sign.getLine(3).startsWith("{") && sign.getLine(3).endsWith("}")) {
