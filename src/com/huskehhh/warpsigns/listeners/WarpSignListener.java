@@ -23,7 +23,7 @@ public class WarpSignListener implements Listener {
             if (lines[0].equalsIgnoreCase("[Warp]")) {
 
                 if (!lines[1].isEmpty()) {
-                    e.setLine(0, "§1[Warp]");
+                    e.setLine(0, ChatColor.GREEN + "[Warp]");
                     p.sendMessage(ChatColor.GREEN + "Successfully made a Warp sign.");
                 } else {
                     p.sendMessage(ChatColor.RED + "[WarpSigns] Please state a warp on the second line.");
@@ -31,7 +31,6 @@ public class WarpSignListener implements Listener {
                 }
 
             }
-
         } else {
             p.sendMessage(ChatColor.RED + "[WarpSigns] You don't have permission to do that!");
             e.setCancelled(true);
@@ -48,7 +47,7 @@ public class WarpSignListener implements Listener {
             if (block.getState() instanceof Sign) {
                 Sign sign = (Sign) block.getState();
                 
-                if (sign.getLine(0).equalsIgnoreCase("§1[Warp]")) {
+                if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("§1[Warp]")) {
                     if (sign.getLine(3).startsWith("{") && sign.getLine(3).endsWith("}")) {
                     	String Fperm = sign.getLine(4).replace("{", "");
                     	String perm = Fperm.replace("}", "");
