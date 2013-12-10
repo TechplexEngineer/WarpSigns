@@ -47,7 +47,7 @@ public class WarpSignListener implements Listener {
             if (block.getState() instanceof Sign) {
                 Sign sign = (Sign) block.getState();
                 
-                if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("§1[Warp]")) {
+                if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("[Warp]")) {
                     if (sign.getLine(3).startsWith("{") && sign.getLine(3).endsWith("}")) {
                     	String Fperm = sign.getLine(4).replace("{", "");
                     	String perm = Fperm.replace("}", "");
