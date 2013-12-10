@@ -17,9 +17,10 @@ public class WarpSignListener implements Listener {
         Player p = e.getPlayer();
         String[] lines = e.getLines();
 
-        if (p.hasPermission("warpsigns.create")) {
 
-            if (lines[0].equalsIgnoreCase("[Warp]")) {
+        if (lines[0].equalsIgnoreCase("[Warp]")) {
+
+            if (p.hasPermission("warpsigns.create")) {
 
                 if (!lines[1].isEmpty()) {
                     e.setLine(0, ChatColor.GREEN + "[Warp]");
@@ -29,20 +30,21 @@ public class WarpSignListener implements Listener {
                     e.setCancelled(true);
                 }
 
+            } else {
+                p.sendMessage(ChatColor.RED + "[WarpSigns] You don't have permission to do that!");
+                e.setCancelled(true);
             }
 
-        } else {
-            p.sendMessage(ChatColor.RED + "[WarpSigns] You don't have permission to do that!");
-            e.setCancelled(true);
         }
 
     }
 
     @EventHandler
     public void clickSign(PlayerInteractEvent e) {
+
         Player p = e.getPlayer();
-        Material material = e.getMaterial();
         Block block = e.getClickedBlock();
+        Material material = block.getType();
 
         if (material == Material.SIGN || material == Material.SIGN_POST || material == Material.WALL_SIGN) {
 
@@ -51,7 +53,7 @@ public class WarpSignListener implements Listener {
                 Sign sign = (Sign) block.getState();
                 String[] lines = sign.getLines();
 
-                if (lines[0].equalsIgnoreCase("[Warp]")) {
+                if (ChatColor.stripColor(lines[0]).equalsIgnoreCase("[Warp]")) {
 
                     if (p.hasPermission("warpsigns.use.*") || p.hasPermission("warpsign.use." + lines[1])) {
                         p.performCommand("warp " + lines[1]);
@@ -66,4 +68,5 @@ public class WarpSignListener implements Listener {
         }
 
     }
+
 }
