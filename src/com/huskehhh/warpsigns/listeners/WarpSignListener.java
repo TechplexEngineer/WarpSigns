@@ -49,8 +49,8 @@ public class WarpSignListener implements Listener {
 
                 if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("[Warp]")) {
                     if (sign.getLine(3).startsWith("{") && sign.getLine(3).endsWith("}")) {
-                        String Fperm = sign.getLine(4).replace("{", "");
-                        String perm = Fperm.replace("}", "");
+                        String perm = sign.getLine(4).replace("{", "");
+                        perm = perm.replace("}", "");
                         if (p.hasPermission("warpsigns.use." + perm) || p.hasPermission("warpsigns.use.*")) {
                             Bukkit.getServer().dispatchCommand(p, "warp " + sign.getLine(1));
                         } else {
