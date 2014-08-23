@@ -42,34 +42,34 @@ public class WarpSignListener implements Listener {
     public void clickSign(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         Block block = e.getClickedBlock();
-        
+
         if (block.getType() == Material.SIGN || block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN) {
             if (block.getState() instanceof Sign) {
                 Sign sign = (Sign) block.getState();
-                
+
                 if (ChatColor.stripColor(sign.getLine(0)).equalsIgnoreCase("[Warp]")) {
                     if (sign.getLine(3).startsWith("{") && sign.getLine(3).endsWith("}")) {
-                    	String Fperm = sign.getLine(4).replace("{", "");
-                    	String perm = Fperm.replace("}", "");
-                    	if(p.hasPermission("warpsigns.use." + perm) || p.hasPermission("warpsigns.use.*")) {
-                    		Bukkit.getServer().dispatchCommand(p, "warp " + sign.getLine(1));
-                    	} else {
-                    		p.sendMessage(ChatColor.DARK_RED + "You need the permission node " + ChatColor.RED + "warpsigns.use." + perm + ChatColor.DARK_RED + " to use this" + ChatColor.GREEN + " WarpSign" + ChatColor.DARK_RED + "!");
-                    	}
+                        String Fperm = sign.getLine(4).replace("{", "");
+                        String perm = Fperm.replace("}", "");
+                        if (p.hasPermission("warpsigns.use." + perm) || p.hasPermission("warpsigns.use.*")) {
+                            Bukkit.getServer().dispatchCommand(p, "warp " + sign.getLine(1));
+                        } else {
+                            p.sendMessage(ChatColor.DARK_RED + "You need the permission node " + ChatColor.RED + "warpsigns.use." + perm + ChatColor.DARK_RED + " to use this" + ChatColor.GREEN + " WarpSign" + ChatColor.DARK_RED + "!");
+                        }
                     } else {
-                    	if(p.hasPermission("warpsigns.use")) {
-                    		Bukkit.getServer().dispatchCommand(p, "warp " + sign.getLine(1));
-                    	} else {
-                    		p.sendMessage(ChatColor.DARK_RED + "You don't have permission to use this" + ChatColor.GREEN + " WarpSign" + ChatColor.DARK_RED + "!");
-                    	}
+                        if (p.hasPermission("warpsigns.use") || p.hasPermission("warpsigns.use.*")) {
+                            Bukkit.getServer().dispatchCommand(p, "warp " + sign.getLine(1));
+                        } else {
+                            p.sendMessage(ChatColor.DARK_RED + "You don't have permission to use this" + ChatColor.GREEN + " WarpSign" + ChatColor.DARK_RED + "!");
+                        }
                     }
-                    	
-                    }
-                    	
+
                 }
 
             }
 
         }
-    	
+
     }
+
+}
