@@ -23,15 +23,6 @@ public class WarpSigns extends JavaPlugin {
             updater = new Updater(this, 41513, this.getFile(), Updater.UpdateType.DEFAULT, false);
         }
 
-        if (config.getBoolean("metrics")) {
-            try {
-                Metrics metrics = new Metrics(this);
-                metrics.start();
-            } catch (IOException e) {
-                // Failed to submit the stats :-(
-            }
-        }
-
     }
 
     public void onDisable() {
@@ -43,9 +34,8 @@ public class WarpSigns extends JavaPlugin {
 
         if (!f.exists()) {
 
-            config.options().header("WarpSigns, made by Husky and Smithey!");
+            config.options().header("WarpSigns, made by Husky!");
             config.set("auto-update", true);
-            config.set("metrics", true);
 
             try {
                 config.save("plugins/WarpSigns/config.yml");
