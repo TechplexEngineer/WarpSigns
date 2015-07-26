@@ -1,7 +1,6 @@
 package com.huskehhh.warpsigns;
 
 import com.huskehhh.warpsigns.listeners.WarpSignListener;
-import com.huskehhh.warpsigns.metrics.Metrics;
 import com.huskehhh.warpsigns.updater.Updater;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
