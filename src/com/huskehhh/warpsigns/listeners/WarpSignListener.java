@@ -18,19 +18,16 @@ public class WarpSignListener implements Listener {
         Player p = e.getPlayer();
         String[] lines = e.getLines();
 
-        if (p.hasPermission("warpsigns.create")) {
+        if (p.hasPermission("warpsigns.create") && lines[0].equalsIgnoreCase("[Warp]")) {
 
-            if (lines[0].equalsIgnoreCase("[Warp]")) {
-
-                if (!lines[1].isEmpty()) {
-                    e.setLine(0, ChatColor.GREEN + "[Warp]");
-                    p.sendMessage(ChatColor.GREEN + "Successfully made a Warp sign.");
-                } else {
-                    p.sendMessage(ChatColor.RED + "[WarpSigns] Please state a warp on the second line.");
-                    e.setCancelled(true);
-                }
-
+            if (!lines[1].isEmpty()) {
+                e.setLine(0, ChatColor.GREEN + "[Warp]");
+                p.sendMessage(ChatColor.GREEN + "Successfully made a Warp sign.");
+            } else {
+                p.sendMessage(ChatColor.RED + "[WarpSigns] Please state a warp on the second line.");
+                e.setCancelled(true);
             }
+
         } else {
             p.sendMessage(ChatColor.RED + "[WarpSigns] You don't have permission to do that!");
             e.setCancelled(true);
